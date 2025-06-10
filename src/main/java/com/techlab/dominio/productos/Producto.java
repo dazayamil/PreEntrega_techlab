@@ -22,10 +22,26 @@ public class Producto {
     public int getCantidadEnStock() {
         return this.cantidadEnStock;
     }
+
+    public void actualizarDatos(Producto otro){
+        this.nombre = otro.getNombre();
+        this.precio = otro.getPrecio();
+        this.cantidadEnStock = otro.cantidadEnStock;
+    }
+
+    public static int getId() {
+        return id;
+    }
+
     public void setNombre(String nombre) {
         if(nombre.isEmpty()){
             throw new IllegalArgumentException("El nombre no puede estar Vacio");
         }
         this.nombre = nombre;
+    }
+
+    @Override
+    public String toString() {
+        return "\n- Id: " + id + "\n- Nombre: " + this.nombre + "\n- Precio: " + this.precio + "\n- Cantidad en stock: " + this.cantidadEnStock;
     }
 }

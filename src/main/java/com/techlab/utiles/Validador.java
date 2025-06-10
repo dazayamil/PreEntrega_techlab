@@ -13,4 +13,10 @@ public class Validador {
             throw new IllegalArgumentException("La cantidad en stock no puede ser menor/igual a 0 - Stock: " + cantidadEnStock);
         }
     }
+
+    public static void validarIdProducto(int id){
+        if(id <= 0){
+            throw new IllegalArgumentException("Id ingresado incorrecto. El ID debe ser mayor a 0");
+        }
+    }
 }
