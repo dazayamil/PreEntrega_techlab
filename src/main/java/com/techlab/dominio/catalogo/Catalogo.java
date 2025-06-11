@@ -36,14 +36,6 @@ public class Catalogo {
         System.out.println("Producto creado con Exito!");
     }
 
-    public void eliminarProducto(){
-
-    }
-
-    public void eliminarProducto(int idProducto){
-
-    }
-
     private Producto buscarProductoPorId(int id){
         for (Producto p: this.productos) {
             if (p.getId() == id){
@@ -53,31 +45,56 @@ public class Catalogo {
         return null;
     }
 
-    public void actualizarProducto(){
+    private Producto solicitarProductoPorId(){
         int id;
         boolean continuar = true;
-        this.listarProductos();
+        Producto prod;
 
-        System.out.print("¿Qué producto desea actualizar?, indicar id: ");
         while(continuar){
             id = scanner.nextInt(); scanner.nextLine();
             Validador.validarIdProducto(id);
-            Producto p = buscarProductoPorId(id);
-            if(p == null){
-                System.err.println("Error, ID ingresado " + id + " invalido, ingrear un ID valido");
-            }else{
-                p.actualizarDatos(solicitarDatosProducto("Nuevo nombre", "Nuevo precio", "Nueva cantidad en Stock"));
+            prod = buscarProductoPorId(id);
+            if(prod != null){
                 continuar = false;
+                return prod;
+            }else{
+                System.err.println("Error, ID ingresado " + id + " invalido, ingrear un ID valido");
             }
             System.out.print("Id producto: ");
         }
+        return null;
+    }
+
+    public void eliminarProducto(){
+        this.listarProductos();
+        System.out.print("Indicar el ID del producto a eliminar: ");
+
+        Producto producto = solicitarProductoPorId();
+        System.out.println("¿Está seguro de que desea eliminar el producto '" + producto.getNombre() + "'? (si/no): ");
+        String opcion = scanner.nextLine().trim().toLowerCase();
+        if(opcion.equals("si")){
+            this.productos.remove(producto);
+            System.out.println("✅ Producto eliminado con éxito.");
+        }else {
+            System.out.println("❎ Operación cancelada.");
+        }
+
+    }
+
+    public void actualizarProducto(){
+        this.listarProductos();
+        System.out.print("¿Qué producto desea actualizar?, indicar id: ");
+        Producto producto = solicitarProductoPorId();
+
+        producto.actualizarDatos(solicitarDatosProducto("Nuevo nombre", "Nuevo precio", "Nueva cantidad en Stock"));
         System.out.println("✅ Producto actualizado con éxito.");
     }
 
     public void listarProductos(){
-        int i = 0;
+        int i = 1;
         for (Producto p: this.productos) {
-            System.out.println("* Producto " + (i+1) + ":" + p.toString());
+            System.out.println("* Producto " + i + ":" + p.toString());
+            i++;
         }
         System.out.println();
     }
