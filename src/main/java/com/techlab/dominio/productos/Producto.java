@@ -1,16 +1,17 @@
 package com.techlab.dominio.productos;
 
 public class Producto {
-    private static int id = 0;
+    private static int contadorId= 0;
+    private int id;
     private String nombre;
     private double precio;
     private int cantidadEnStock;
 
     public Producto(String nombre, double precio, int cantidadEnStock){
+        this.id = ++contadorId;
         this.nombre = nombre;
         this.precio = precio;
         this.cantidadEnStock = cantidadEnStock;
-        id++;
     }
 
     public String getNombre() {
@@ -29,8 +30,8 @@ public class Producto {
         this.cantidadEnStock = otro.cantidadEnStock;
     }
 
-    public static int getId() {
-        return id;
+    public int getId() {
+        return this.id;
     }
 
     public void setNombre(String nombre) {
@@ -42,6 +43,6 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "\n- Id: " + id + "\n- Nombre: " + this.nombre + "\n- Precio: " + this.precio + "\n- Cantidad en stock: " + this.cantidadEnStock;
+        return "\n- Id: " + this.id + "\n- Nombre: " + this.nombre + "\n- Precio: " + this.precio + "\n- Cantidad en stock: " + this.cantidadEnStock;
     }
 }

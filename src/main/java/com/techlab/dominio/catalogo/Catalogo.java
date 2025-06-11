@@ -19,7 +19,7 @@ public class Catalogo {
 
         System.out.print(mensajeNombre + ": ");
         String nombreProducto = scanner.nextLine();
-        System.out.print(mensajePrecio + "$ ");
+        System.out.print(mensajePrecio + ": $");
         double precio = scanner.nextDouble();
         scanner.nextLine(); //Para cortar el buffer
         System.out.print(mensajeStock + ": ");
@@ -59,8 +59,9 @@ public class Catalogo {
                 return prod;
             }else{
                 System.err.println("Error, ID ingresado " + id + " invalido, ingrear un ID valido");
+                System.out.println();
+                System.out.print("repetir Id producto: ");
             }
-            System.out.print("Id producto: ");
         }
         return null;
     }
@@ -93,9 +94,9 @@ public class Catalogo {
     public void listarProductos(){
         int i = 1;
         for (Producto p: this.productos) {
-            System.out.println("* Producto " + i + ":" + p.toString());
+            System.out.println("===== Producto " + i + "=====" + p.toString());
             i++;
+            System.out.println();
         }
-        System.out.println();
     }
 }
