@@ -14,7 +14,7 @@ public class Main {
             try {
                 System.out.println("\n📦 Bienvenido a la tienda TechLab:");
                 System.out.println("1) Ingresar como SuperUsuario");
-                System.out.println("2) Ingresar como Cliente (solo ver productos)");
+                System.out.println("2) Ingresar como Cliente");
                 System.out.println("3) Salir");
                 System.out.print("Seleccione una opción: ");
 
