@@ -14,4 +14,20 @@ public class Cliente {
         this.dni = dni;
         this.pedidos = new ArrayList<>();
     }
+
+    public void agregarPedido(Pedido p){
+        this.pedidos.add(p);
+    }
+
+    public String getNombre() {
+        return this.nombre;
+    }
+
+    public List<Pedido> getPedidos() {
+        return this.pedidos;
+    }
+
+    public int getDni() {
+        return this.dni;
+    }
 }

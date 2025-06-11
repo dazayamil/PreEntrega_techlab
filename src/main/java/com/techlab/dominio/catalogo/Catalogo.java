@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.techlab.dominio.productos.Producto;
+import com.techlab.utiles.Validador;
 import com.techlab.utiles.*;
 
 public class Catalogo {
@@ -13,6 +14,10 @@ public class Catalogo {
 
     public Catalogo(){
         this.productos = new ArrayList<>();
+    }
+
+    public int cantidadDeProductos(){
+        return this.productos.size();
     }
 
     private Producto solicitarDatosProducto(String mensajeNombre, String mensajePrecio, String mensajeStock){
@@ -36,13 +41,43 @@ public class Catalogo {
         System.out.println("Producto creado con Exito!");
     }
 
-    private Producto buscarProductoPorId(int id){
+    public Producto retornarProductoPorId(int id){
         for (Producto p: this.productos) {
             if (p.getId() == id){
                 return p;
             }
         }
         return null;
+    }
+
+    public Boolean buscarProductoPorId(){
+        System.out.println("Ingresar el ID del producto: ");
+        int id = scanner.nextInt(); scanner.nextLine();
+        Validador.validarIdProducto(id);
+        for (Producto producto: this.productos) {
+            if(producto.getId() == id){
+                producto.toString();
+                return true;
+            }else{
+                System.out.println("Producto con ID " + id + " no encontrado");
+            }
+        }
+        return false;
+    }
+
+    public Boolean buscarProductoPorNombre(){
+        System.out.println("Ingresar el nombre del producto: ");
+        String nombre = scanner.nextLine();
+        Validador.validarNombre(nombre);
+        for (Producto producto: this.productos) {
+            if(producto.getNombre().equals(nombre)){
+                producto.toString();
+                return true;
+            }else{
+                System.out.println("Producto con nombre " + nombre + " no encontrado");
+            }
+        }
+        return false;
     }
 
     private Producto solicitarProductoPorId(){
@@ -53,7 +88,7 @@ public class Catalogo {
         while(continuar){
             id = scanner.nextInt(); scanner.nextLine();
             Validador.validarIdProducto(id);
-            prod = buscarProductoPorId(id);
+            prod = retornarProductoPorId(id);
             if(prod != null){
                 continuar = false;
                 return prod;

@@ -41,6 +41,13 @@ public class Producto {
         this.nombre = nombre;
     }
 
+    public void setCantidadEnStock(int stock) {
+        if(stock <= 0){
+            throw new IllegalArgumentException("El valor pasado por parametro no puede ser negativo o 0");
+        }
+        this.cantidadEnStock = stock;
+    }
+
     @Override
     public String toString() {
         return "\n- Id: " + this.id + "\n- Nombre: " + this.nombre + "\n- Precio: " + this.precio + "\n- Cantidad en stock: " + this.cantidadEnStock;
